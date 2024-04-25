@@ -1,5 +1,7 @@
 import http from 'node:http'
+
 import { Logger } from './logger.js'
+import { RouteParser } from './route-parser.js'
 
 export class App {
   #server = null
@@ -9,12 +11,21 @@ export class App {
   constructor() {
     this.#server = http.createServer(async (req, res) => {
       const { method, url } = req
-      const route = this.#routes.find(route => route.method === method && route.path === url)
+
+      const route = this.#routes.find(route => route.method === method && RouteParser.test(route.path, url))
+
       if (!route)
         return res.writeHead(404).end()
+
+      const { query, params } = RouteParser.extractRouteParams(route.path, url)
+
+      req.query = query
+      req.params = params
+
       for (const middleware of this.#middlewares) {
         await middleware(req, res)
       }
+
       return route.handler(req, res)
     })
   }
