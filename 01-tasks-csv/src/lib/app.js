@@ -26,7 +26,11 @@ export class App {
         await middleware(req, res)
       }
 
-      return route.handler(req, res)
+      try {
+        await route.handler(req, res)
+      } catch (error) {
+        return res.writeHead(error.code || 500).end(JSON.stringify({ message: error.message }))
+      }
     })
   }
 
