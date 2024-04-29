@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises'
 
-const databasePath = new URL('../db.json', import.meta.url)
+import { lowerCaseIncludes } from '../utils/string.js'
+
+const databasePath = new URL('./db.json', import.meta.url)
 
 export class JsonDatabase {
   #database = {}
@@ -24,7 +26,7 @@ export class JsonDatabase {
     if (search) {
       data = data.filter(row => {
         return Object.entries(search).some(([key, value]) => {
-          return row[key].toLowerCase().includes(value.toLowerCase())
+          return lowerCaseIncludes(row[key], value)
         })
       })
     }
@@ -43,7 +45,7 @@ export class JsonDatabase {
   update(table, id, data) {
     const rowIndex = this.#database[table].findIndex(row => row.id === id)
     if (rowIndex > -1) {
-      this.#database[table][rowIndex] = { id, ...data }
+      this.#database[table][rowIndex] = { id, ...this.#database[table][rowIndex], ...data }
       this.#persist()
     }
   }
