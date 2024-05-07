@@ -6,3 +6,5 @@ db.json
 
 .env
 .env.test
+
+*.db
