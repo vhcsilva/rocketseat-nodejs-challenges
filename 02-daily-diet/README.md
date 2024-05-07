@@ -2,12 +2,12 @@
 
 ## Requirements
 
-- [ ] Should be possible to create a user
+- [x] Should be possible to create a user
   - ID
   - Name
   - Email
   - Password
-- [ ] Should be possible to identify users on requests
+- [x] Should be possible to identify users on requests
 - [ ] Should be possible to register a meal
   - Name
   - Description
