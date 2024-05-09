@@ -8,7 +8,7 @@ import { knex } from '../database'
 const HASH_SALT = 12
 
 export async function authRoutes(app: FastifyInstance) {
-  app.post('/signup', async (request) => {
+  app.post('/signup', async (request, reply) => {
     const signUpBodySchema = z.object({
       name: z.string(),
       email: z.string(),
@@ -16,6 +16,13 @@ export async function authRoutes(app: FastifyInstance) {
     })
 
     const { name, email, password } = signUpBodySchema.parse(request.body)
+
+    const checkEmail = await knex('users').where('email', email).first()
+
+    if (checkEmail)
+      reply.status(400).send({
+        message: 'Email already exists',
+      })
 
     const id = randomUUID()
     const passwordHash = await bcrypt.hash(password, HASH_SALT)
@@ -44,10 +51,10 @@ export async function authRoutes(app: FastifyInstance) {
 
     const user = await knex('users').where('email', email).first()
 
-    if (!user) return reply.status(401).send()
+    if (!user) return reply.status(400).send()
 
     if (!(await bcrypt.compare(password, user.password)))
-      return reply.status(401).send()
+      return reply.status(400).send()
 
     const sessionId = randomUUID()
 
