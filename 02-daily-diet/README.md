@@ -16,7 +16,7 @@
   - User ID
 - [ ] Should be possible to edit a meal
 - [ ] Should be possible to delete a meal
-- [ ] Should be possible to list all meals of a user
+- [x] Should be possible to list all meals of a user
 - [ ] Should be possible to view a specific meal
 - [ ] Should be possible to view user metrics
   - [ ] Total number of meals registered

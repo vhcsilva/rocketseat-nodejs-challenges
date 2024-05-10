@@ -8,6 +8,16 @@ import { authenticatedRoute } from '../middlewares/authenticated-route'
 export async function mealRoutes(app: FastifyInstance) {
   app.addHook('preHandler', authenticatedRoute)
 
+  app.get('/', async (request) => {
+    const sessionId = request.cookies.sessionId
+    const user = await knex('users').where('session_id', sessionId).first()
+    const meals = await knex('meals')
+      .where('user_id', user?.id)
+      .select('id', 'name', 'description', 'diet', 'created_at')
+
+    return meals
+  })
+
   app.post('/', async (request, reply) => {
     const createMealBodySchema = z.object({
       name: z.string(),
