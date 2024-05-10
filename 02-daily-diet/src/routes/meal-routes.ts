@@ -8,6 +8,27 @@ import { authenticatedRoute } from '../middlewares/authenticated-route'
 export async function mealRoutes(app: FastifyInstance) {
   app.addHook('preHandler', authenticatedRoute)
 
+  app.get('/:id', async (request, reply) => {
+    const getMealParamsSchema = z.object({
+      id: z.string(),
+    })
+
+    const { id } = getMealParamsSchema.parse(request.params)
+    const sessionId = request.cookies.sessionId
+
+    const user = await knex('users').where('session_id', sessionId).first()
+    const meal = await knex('meals')
+      .where({
+        id,
+        user_id: user?.id,
+      })
+      .first('id', 'name', 'description', 'diet', 'created_at')
+
+    if (!meal) reply.status(404).send()
+
+    return meal
+  })
+
   app.get('/', async (request) => {
     const sessionId = request.cookies.sessionId
     const user = await knex('users').where('session_id', sessionId).first()
