@@ -39,6 +39,35 @@ export async function mealRoutes(app: FastifyInstance) {
     return meals
   })
 
+  app.get('/metrics', async (request) => {
+    const sessionId = request.cookies.sessionId
+    const user = await knex('users').where('session_id', sessionId).first()
+    const meals = await knex('meals')
+      .where('user_id', user?.id)
+      .select('id', 'name', 'description', 'diet', 'created_at')
+
+    const total = meals?.length
+    const totalOnDiet = meals?.filter((meal) => meal?.diet)?.length
+    const totalOutDiet = total - totalOnDiet
+
+    let bestSequence = 0
+    let tmp = 0
+    meals?.forEach((meal) => {
+      if (meal?.diet) tmp += 1
+      else {
+        if (tmp > bestSequence) bestSequence = tmp
+        tmp = 0
+      }
+    })
+
+    return {
+      total,
+      totalOnDiet,
+      totalOutDiet,
+      bestSequence,
+    }
+  })
+
   app.post('/', async (request, reply) => {
     const createMealBodySchema = z.object({
       name: z.string(),

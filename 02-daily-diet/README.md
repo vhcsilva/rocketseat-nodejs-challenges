@@ -18,9 +18,9 @@
 - [x] Should be possible to delete a meal
 - [x] Should be possible to list all meals of a user
 - [x] Should be possible to view a specific meal
-- [ ] Should be possible to view user metrics
-  - [ ] Total number of meals registered
-  - [ ] Total number of meals on the diet
-  - [ ] Total number of meals out of the diet
-  - [ ] Best sequence of meals on the diet
+- [x] Should be possible to view user metrics
+  - [x] Total number of meals registered
+  - [x] Total number of meals on the diet
+  - [x] Total number of meals out of the diet
+  - [x] Best sequence of meals on the diet
 - [x] User can only view, edit and delete their own meals
