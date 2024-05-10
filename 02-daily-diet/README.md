@@ -14,7 +14,7 @@
   - Timestamp
   - In/out of diet
   - User ID
-- [ ] Should be possible to edit a meal
+- [x] Should be possible to edit a meal
 - [ ] Should be possible to delete a meal
 - [x] Should be possible to list all meals of a user
 - [x] Should be possible to view a specific meal
