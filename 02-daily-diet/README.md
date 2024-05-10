@@ -8,7 +8,7 @@
   - Email
   - Password
 - [x] Should be possible to identify users on requests
-- [ ] Should be possible to register a meal
+- [x] Should be possible to register a meal
   - Name
   - Description
   - Timestamp
