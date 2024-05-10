@@ -75,7 +75,14 @@ export async function mealRoutes(app: FastifyInstance) {
       diet: z.boolean(),
     })
 
-    const { name, description, diet } = createMealBodySchema.parse(request.body)
+    const { data, success } = createMealBodySchema.safeParse(request.body)
+
+    if (!success)
+      return reply.status(400).send({
+        error: 'Missing parameters',
+      })
+
+    const { name, description, diet } = data
 
     const id = randomUUID()
     const sessionId = request.cookies.sessionId
