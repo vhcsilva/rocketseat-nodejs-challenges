@@ -16,3 +16,26 @@
 - [ ] A pet must be related to a organization
 - [ ] Only the city filter is required, other filters are optional
 - [ ] In order to a organization to access the application as admin, it must be logged in
+
+## Entities
+- Pet:
+  - name: string
+  - description: string
+  - type: dog, cat
+  - energy: 1, 2, 3, 4, 5
+  - size: small, mid, large
+  - environment: small, mid, large
+  - dependency: low, medium, high
+  - age: number
+  - pictures: string[]
+  - adoptionRequirements: string[]
+
+- Organization:
+  - name: string
+  - email: string
+  - cep: string
+  - address: string
+  - state: string
+  - city: string
+  - phone: string
+  - password: string
