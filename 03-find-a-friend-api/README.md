@@ -30,7 +30,7 @@
   - pictures: string[]
   - adoptionRequirements: string[]
 
-- Organization:
+- User:
   - name: string
   - email: string
   - cep: string
@@ -39,3 +39,4 @@
   - city: string
   - phone: string
   - password: string
+  - role: ADMIN | ORGANIZATION | USER
