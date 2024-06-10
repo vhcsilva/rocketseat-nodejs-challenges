@@ -15,6 +15,10 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
+  async findManyByUsersIds(usersIds: string[]) {
+    return this.items.filter(item => usersIds.includes(item.userId))
+  }
+
   async create(data: AddPetData): Promise<Pet> {
     const id = randomUUID()
 

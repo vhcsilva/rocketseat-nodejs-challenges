@@ -37,4 +37,8 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user
   }
 
+  async findManyByCity(city: string) {
+    return this.items.filter(item => item.city === city)
+  }
+
 }

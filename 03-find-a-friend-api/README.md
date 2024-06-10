@@ -3,7 +3,7 @@
 ## Functional Requirements
 
 - [x] Should be possible to register a pet
-- [ ] Should be possible to list all pets available for adoption within a city
+- [x] Should be possible to list all pets available for adoption within a city
 - [ ] Should be possible to search for pets by its characteristics
 - [x] Should be possible to view the details of a pet
 - [x] Should be possible to register as a organization

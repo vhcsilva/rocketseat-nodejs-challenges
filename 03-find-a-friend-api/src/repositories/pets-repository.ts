@@ -17,4 +17,5 @@ export interface AddPetData {
 export interface PetsRepository {
   create(data: AddPetData): Promise<Pet>
   findById(id: string): Promise<Pet | null>
+  findManyByUsersIds(usersIds: string[]): Promise<Pet[]>
 }

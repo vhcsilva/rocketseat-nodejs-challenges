@@ -16,4 +16,5 @@ export interface UsersRepository {
   create: (data: CreateUserData) => Promise<User>
   findById: (id: string) => Promise<User | null>
   findByEmail: (email: string) => Promise<User | null>
+  findManyByCity: (city: string) => Promise<User[]>
 }
