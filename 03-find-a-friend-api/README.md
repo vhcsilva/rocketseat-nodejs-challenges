@@ -6,7 +6,7 @@
 - [ ] Should be possible to list all pets available for adoption within a city
 - [ ] Should be possible to search for pets by its characteristics
 - [ ] Should be possible to view the details of a pet
-- [ ] Should be possible to register as a organization
+- [x] Should be possible to register as a organization
 - [ ] Should be possible to login as a organization
 
 ## Business Rules
