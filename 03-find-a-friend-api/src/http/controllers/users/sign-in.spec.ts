@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 import { app } from '@/app'
 
-describe('Register Controller', () => {
+describe('Sign In Controller', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -12,8 +12,8 @@ describe('Register Controller', () => {
     await app.close()
   })
 
-  it('Should be able to register', async () => {
-    const response = await request(app.server)
+  it('Should be able to sign in', async () => {
+    await request(app.server)
       .post('/register')
       .send({
         name: 'Organization 1',
@@ -26,6 +26,16 @@ describe('Register Controller', () => {
         password: '123456'
       })
 
-    expect(response.statusCode).toBe(201)
+    const response = await request(app.server)
+      .post('/sign-in')
+      .send({
+        email: 'org1@example.com',
+        password: '123456'
+      })
+
+    expect(response.statusCode).toEqual(200)
+    expect(response.body).toEqual({
+      token: expect.any(String),
+    })
   })
 })
