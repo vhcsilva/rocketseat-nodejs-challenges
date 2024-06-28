@@ -25,6 +25,7 @@ app.register(usersRoutes)
 app.register(petsRoutes)
 
 app.setErrorHandler((error, _, reply) => {
+  console.log("#################################### error", error)
   if (error instanceof ZodError)
     return reply.status(400).send({
       message: 'Validation error',

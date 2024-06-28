@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 
-describe('Add Pet Controller', () => {
+describe('Get Pet Controller', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -13,10 +13,10 @@ describe('Add Pet Controller', () => {
     await app.close()
   })
 
-  it('Should be able to add a pet', async () => {
+  it('Should be able to get a pet', async () => {
     const { token } = await createAndAuthenticateUser(app)
 
-    const response = await request(app.server)
+    const addResponse = await request(app.server)
       .post('/pets')
       .set('Authorization', `Bearer ${token}`)
       .send({
@@ -32,9 +32,13 @@ describe('Add Pet Controller', () => {
         adoptionRequirements: ['Walk the dog twice a day', 'To have kids'],
       })
 
-    expect(response.statusCode).toEqual(201)
-    expect(response.body.pet).toEqual(expect.objectContaining({
-      id: expect.any(String)
+    const getResponse = await request(app.server)
+      .get(`/pets/${addResponse.body.pet.id}`)
+      .send()
+
+    expect(getResponse.statusCode).toEqual(200)
+    expect(getResponse.body.pet).toEqual(expect.objectContaining({
+      id: addResponse.body.pet.id
     }))
   })
 })

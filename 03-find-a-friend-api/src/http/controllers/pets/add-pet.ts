@@ -31,7 +31,7 @@ export async function addPet(request: FastifyRequest, reply: FastifyReply) {
 
   const addPetUseCase = makeAddPetUseCase()
 
-  await addPetUseCase.execute({
+  const { pet } = await addPetUseCase.execute({
     name,
     description,
     type,
@@ -45,5 +45,5 @@ export async function addPet(request: FastifyRequest, reply: FastifyReply) {
     userId: request.user.sub,
   })
 
-  return reply.status(201).send()
+  return reply.status(201).send({ pet })
 }
