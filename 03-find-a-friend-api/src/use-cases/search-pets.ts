@@ -6,9 +6,9 @@ import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-err
 interface SearchPetsUseCaseInput {
   city: string,
   type?: 'DOG' | 'CAT' | null
-  energy?: 1 | 2 | 3 | 4 | 5 | null
-  size?: 'SMALL' | 'MID' | 'LARGE' | null
-  environment?: 'SMALL' | 'MID' | 'LARGE' | null
+  energy?: 'LOWEST' | 'LOW' | 'REGULAR' | 'HIGH' | 'HIGHEST' | null
+  size?: 'SMALL' | 'MEDIUM' | 'LARGE' | null
+  environment?: 'SMALL' | 'MEDIUM' | 'LARGE' | null
   dependency?: 'LOW' | 'MEDIUM' | 'HIGH' | null
 }
 
