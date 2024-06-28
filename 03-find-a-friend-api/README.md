@@ -15,7 +15,7 @@
 - [x] A organization must have a address and a whatsapp contact
 - [x] A pet must be related to a organization
 - [x] Only the city filter is required, other filters are optional
-- [ ] In order to a organization to access the application as admin, it must be logged in
+- [x] In order to a organization to access the application as admin, it must be logged in
 
 ## Entities
 - Pet:

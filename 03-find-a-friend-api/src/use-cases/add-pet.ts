@@ -7,9 +7,9 @@ interface AddPetUseCaseInput {
   name: string
   description: string
   type: 'DOG' | 'CAT'
-  energy: 1 | 2 | 3 | 4 | 5
-  size: 'SMALL' | 'MID' | 'LARGE'
-  environment: 'SMALL' | 'MID' | 'LARGE'
+  energy: 'LOWEST' | 'LOW' | 'REGULAR' | 'HIGH' | 'HIGHEST'
+  size: 'SMALL' | 'MEDIUM' | 'LARGE'
+  environment: 'SMALL' | 'MEDIUM' | 'LARGE'
   dependency: 'LOW' | 'MEDIUM' | 'HIGH'
   age: number
   pictures: string[]

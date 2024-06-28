@@ -13,8 +13,8 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
-  async findById(id: string): Promise<User | null> {
-    const user = prisma.user.findUnique({
+  async findById(id: string) {
+    const user = await prisma.user.findUnique({
       where: {
         id,
       },
@@ -23,8 +23,8 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    const user = prisma.user.findUnique({
+  async findByEmail(email: string) {
+    const user = await prisma.user.findUnique({
       where: {
         email,
       },
@@ -33,8 +33,8 @@ export class PrismaUsersRepository implements UsersRepository {
     return user
   }
 
-  async findManyByCity(city: string): Promise<User[]> {
-    const user = prisma.user.findMany({
+  async findManyByCity(city: string) {
+    const user = await prisma.user.findMany({
       where: {
         city,
       },
